@@ -1,0 +1,24 @@
+---
+- name: This is playbook to install demonstrate use of single handler 
+  hosts: ansible-c-4572-vm-1
+  vars: 
+    file_to_edit: /var/www/html/index.html
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Installing the Apache web server
+    yum:
+      name: httpd
+      state: latest
+  # Task 2
+  - name: Writing the hostname of node to {{ file_to_edit }} file
+    shell: hostname >> {{ file_to_edit }}
+    notify: enable_httpd_handler
+  
+# Handlers
+  handlers:
+    - name: enable_httpd_handler
+      systemd:
+        enabled: True
+        name: httpd
+        state: restarted

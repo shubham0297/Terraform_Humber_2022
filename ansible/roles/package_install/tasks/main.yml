@@ -1,0 +1,7 @@
+---
+# tasks file for roles/package_install
+- name: Install the packages
+  yum:
+    name: "{{ packages }}"
+    state: present
+  when: ansible_distribution == "CentOS" or  ansible_distribution == "RedHat"

@@ -1,0 +1,9 @@
+---
+- name: This is a playbook with 1 play and 1 task
+  hosts: linux
+  tasks:
+  - name: This tasks installs the package called ypserv on the linux hosts
+    dnf:
+      name: ypserv
+      state: present
+...

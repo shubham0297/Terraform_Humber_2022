@@ -1,0 +1,35 @@
+---
+# tasks file for profile_mgmt
+- name: This block contains 2 sub-tasks which will work on {{filePath}} file
+  block:
+  # Sub-Task1
+  - name: Adding some text to the EOF
+    blockinfile:
+      path: "{{ filePath }}"
+      insertafter: EOF
+      state: present
+      block: |
+        {{ textToAppend }}
+
+  # Sub-Task2
+  - name: Replace line beginning with umask to umask0077
+    lineinfile:
+      path: "{{ filePath }}"
+      regex: "{{ searchText }}"
+      line: "{{ replaceText }}"
+      state: present
+  
+  rescue:
+  - name: This task will run if any one of the sub-task under block fails
+    blockinfile:
+      path: "{{ filePath_forAlways }}"
+      insertafter: EOF
+      state: present
+      block: |
+        {{ textToAppend_ifError }}
+
+  always:
+  - name: This task will always run independent of any task/sub-task
+    debug:
+      msg: "{{ outputMessage }}"
+

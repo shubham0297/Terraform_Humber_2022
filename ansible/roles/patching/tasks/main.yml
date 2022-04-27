@@ -1,0 +1,8 @@
+---
+# tasks file for patching
+- name: Update the packages
+  yum:
+    name: "*"
+    state: latest
+  when: ansible_distribution == "CentOS" or  ansible_distribution == "RedHat"
+  notify: package_installed_handler

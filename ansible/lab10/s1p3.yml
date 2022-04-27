@@ -1,0 +1,19 @@
+---
+- name: This is playbook to add a message to a file based on a particular condition
+  hosts: linux
+  vars:
+    msg: This is my CentOS VM
+    path: /tmp/conditional
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Writing message to a file
+    blockinfile:
+      block: " {{msg}} "
+      create: True
+      insertafter: EOF
+      path: "{{ path }}"
+      state: present
+    when: 
+      - ansible_distribution_version == "8.2"
+      - ansible_kernel == "4.18.0-193.6.3.el8_2.x86_64"

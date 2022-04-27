@@ -1,0 +1,12 @@
+---
+- name: This is playbook to demonstrate the use of host-variables
+  hosts: ansible-c-4572-vm-1
+  # Creating Tasks
+  tasks:
+  # Task 1
+    - name: Installing the {{ package1 }} and {{package2}} packages
+      dnf:
+        name:
+        - "{{ package1 }}"
+        - "{{ package2 }}"
+        state: latest 

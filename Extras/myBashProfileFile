@@ -1,0 +1,29 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+export TF_LOG=Trace
+export TF_LOG_PATH=~/logs/terraform.log
+export ARM_SUBSCRIPTION_ID="b913328a-5079-4089-a1fa-e84d9ad02ee1"
+export ARM_TENANT_ID="ca92071f-f342-40c7-8385-6997a60526cc"
+export ARM_CLIENT_ID="a7d5c7e9-fe8c-4c5d-b0e5-4961031ea529"
+export ARM_CLIENT_SECRET="9Fm9B9~.SmLczJE~ePzyP0mLoqy0.4cqqH"
+
+## For ASSIGNMENT
+export ARM_ACCESS_KEY="W9E6S3N4AFH1YuMewSeyIhfdYSfpZjxhdbwgZ34o84p9BIjf0WTYCG4UAWnOuOsWPG0f8PP3XT2dS3dUodc1Qw=="
+
+## FOR LAB 8
+# export ARM_ACCESS_KEY="OdnnU+DUXvS8UWCIv31RHNwPstbfBR+j6EMD8cbDGd7DsZTJquOKGLcY2FaYJ0+s7MqdTnfWOIQj73uY3+B6xA=="
+export ANSIBLE_CONFIG="~/ansible/ansible.cfg"
+
+### Service Prinicipal
+# {
+#   "appId": "a7d5c7e9-fe8c-4c5d-b0e5-4961031ea529",
+#   "displayName": "sp.tf.n01354572",
+#   "password": "9Fm9B9~.SmLczJE~ePzyP0mLoqy0.4cqqH",
+#   "tenant": "ca92071f-f342-40c7-8385-6997a60526cc"
+# }

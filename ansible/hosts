@@ -1,0 +1,22 @@
+[linux]
+# ansible-c-4572-vm-1
+# ansible-c-4572-vm-2
+linux4572-vm-1
+linux4572-vm-2
+
+[windows]
+ansible-w-4572
+
+[os:children]
+linux
+windows
+
+[windows:vars]
+ansible_user=n01354572
+ansible_password="Lab4@Automation"
+ansible_connection=winrm
+ansible_port=5985
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
+
+

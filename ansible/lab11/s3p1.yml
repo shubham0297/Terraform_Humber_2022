@@ -1,0 +1,35 @@
+---
+- name: This is playbook to demonstrate the management of files and folder
+  hosts: ansible-c-4572-vm-1
+# Creating Tasks
+  tasks:
+  # Task 1
+  - name: Copying file from local to remote host 
+    copy:
+      src: locfile
+      dest: /tmp
+      owner: n01354572
+      group: root
+      mode: 0444
+  # Task 2
+  - name: Changing SELinux File Type
+    file:
+      path: /tmp/locfile
+      setype: etc_t
+  # Task 3
+  - name: Displaying the status of /tmp/locfile
+    stat:
+      path: /tmp/locfile
+    register: file_status
+
+  - name: Show the captured status
+    debug:
+      var: file_status
+    
+  # Task 4
+  - name: Creating a file on the managed node's home directory
+    file:
+      path: /home/$USER/emptyfile
+      state: touch
+    become: false
+      

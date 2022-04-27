@@ -1,0 +1,11 @@
+---
+- name: This is playbook to demonstrate the use of group-variables
+  hosts: linux
+  # Creating Tasks
+  tasks:
+  # Task 1
+    - name: Installing the {{ package }} package
+      dnf:
+        name:
+        - "{{ package }}"
+        state: latest 

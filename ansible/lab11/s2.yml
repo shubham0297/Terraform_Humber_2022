@@ -1,0 +1,39 @@
+---
+- name: This is playbook demonstrate use of block, rescue and always 
+  hosts: linux
+# Creating Task
+  tasks:
+  # Task 1
+  - name: This block contains 2 sub-tasks which will work on /etc/profile file
+    block:
+    # Sub-Task1
+    - name: Adding some text to the EOF
+      blockinfile:
+        path: /etc/profile
+        insertafter: EOF
+        state: present
+        block: |
+          export TMOUT=900
+
+    # Sub-Task2
+    - name: Replace line beginning with umask to umask0077
+      lineinfile:
+        path: /etc/profile
+        regex: "^umask"
+        line: "umask 0077"
+        state: present
+    
+    rescue:
+    - name: This task will run if any one of the sub-task under block fails
+      blockinfile:
+        path: ~/.bash_profile
+        insertafter: EOF
+        state: present
+        block: |
+          umask 0066
+
+    always:
+    - name: This task will always run independent of any task/sub-task
+      debug:
+        msg: Playbook execution completed
+

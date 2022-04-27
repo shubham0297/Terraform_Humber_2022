@@ -1,0 +1,42 @@
+---
+- name: This is playbook to demonstrate in-playbook variable definitions
+  hosts: ansible-c-4572-vm-1
+  vars:
+    grouplist1: group10
+    grouplist2: group20
+    userlist1: user10
+    userlist2: user20
+# Creating Tasks
+  tasks:
+  # Task 1
+  - name: Creating group - {{ grouplist1 }}
+    group:
+      name: "{{ grouplist1 }}"
+      state: present
+  
+  # Task 2
+  - name: Creating group - {{ grouplist2 }}
+    group:
+      name: "{{ grouplist2 }}"
+      state: present
+  
+  # Task 3    
+  - name: Creating user - {{ userlist1 }}
+    user:
+      append: yes
+      groups: "{{ grouplist1 }}"
+      name: "{{ userlist1 }}"
+      state: present
+      uid: 1800
+      
+  # Task 4
+  - name: Creating user - {{ userlist2 }}
+    user:
+      append: yes
+      groups: "{{ grouplist2 }}"
+      home: "/home/{{ userlist2 }}"
+      name: "{{ userlist2 }}"
+      shell: /bin/bash
+      state: present
+      uid: 1900
+

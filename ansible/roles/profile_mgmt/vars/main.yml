@@ -1,0 +1,10 @@
+---
+# vars file for profile_mgmt
+
+filePath: /etc/profile
+textToAppend: export TMOUT=900
+textToAppend_ifError: umask 0066
+filePath_forAlways: ~/.bash_profile
+outputMessage : Playbook execution completed
+searchText: ^umask
+replaceText: umask 0077

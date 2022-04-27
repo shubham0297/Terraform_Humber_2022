@@ -1,0 +1,13 @@
+---
+- name: This is playbook to demonstrate the version of setup package
+  hosts: ansible-c-4572-vm-1
+  # Creating Tasks
+  tasks:
+  # Task 1
+    - name: Gathering all the packages
+      package_facts:
+        manager: auto
+  # Task 2  
+    - name: Displaying all the version of setup package
+      debug:
+        msg: "The version of setup package is - {{ packages.setup[0].version }}"

@@ -1,0 +1,7 @@
+---
+# tasks file for roles/package_remove
+- name: Remove the packages
+  yum:
+    name: "{{ packages }}"
+    state: absent
+  when: ansible_distribution == "CentOS" or  ansible_distribution == "RedHat"

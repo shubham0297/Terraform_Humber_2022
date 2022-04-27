@@ -1,0 +1,34 @@
+---
+- name: This is playbook to create users using loop
+  hosts: linux
+  vars:
+    users: 
+      - username: user101
+        uid: 5001
+      - username: user102
+        uid: 5002
+      - username: user103
+        uid: 5003
+      - username: user104
+        uid: 5004
+      - username: user105
+        uid: 5005
+      - username: user106
+        uid: 5006
+      - username: user107
+        uid: 5007
+      - username: user108
+        uid: 5008
+      - username: user109
+        uid: 5009
+      - username: user110
+        uid: 5010
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Creating users
+    user:
+      name: "{{ item.username }}"
+      uid: "{{ item.uid }}"
+      state: present
+    loop: "{{ users }}"

@@ -1,0 +1,6 @@
+---
+# handlers file for syslog_updates
+- name: restart_rsyslog
+  systemd:
+    name: rsyslog
+    state: restarted

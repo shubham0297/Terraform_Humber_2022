@@ -1,0 +1,8 @@
+az group create -l canadaeast -n tfstate_for_Labs
+az storage account create -l canadaeast -n tfstate4572sa -g tfstate_for_Labs --sku Standard_LRS
+az storage account keys list -g tfstate_for_Labs -n tfstate4572sa
+az storage container create -n tfstate4572container --account-name tfstate4572sa --account-key ""
+
+# Update the key obtained in Step 3 to ~/.bash_profile file ARM_ACCESS_KEY variable
+# After adding, apply it using -
+# source ~/.bash_profile   OR bash ~/.bash_profile

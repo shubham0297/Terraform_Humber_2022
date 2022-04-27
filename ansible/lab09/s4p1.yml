@@ -1,0 +1,16 @@
+---
+- name: This is playbook to demonstrate the facts for a single node
+  hosts: ansible-c-4572-vm-1
+  # Creating Tasks
+  tasks:
+  # Task 1
+    - name: Displaying all the facts
+      debug:
+        var: ansible_facts
+  # Task 2 
+    - name: Displaying selected attributes from the facts
+      debug:
+        msg: 
+          - 1. IPv4 address - "{{ ansible_facts['default_ipv4']['address']}}"
+          - 2. FQDN - {{ ansible_facts['fqdn']}}
+          - 3. Short host name - {{ ansible_facts['hostname'] }}

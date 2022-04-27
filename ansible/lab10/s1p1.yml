@@ -1,0 +1,13 @@
+---
+- name: This is playbook to install a software if it is defined
+  hosts: ansible-c-4572-vm-1
+  vars:
+    package_to_install: nmap
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Installing {{ package_to_install }} package
+    yum:
+      name: " {{package_to_install}} "
+      state: latest
+    when: package_to_install is defined

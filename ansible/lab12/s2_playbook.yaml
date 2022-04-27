@@ -1,0 +1,10 @@
+---
+- name: This is main playbook for Q12
+  hosts: linux
+  roles:
+    - package_remove
+    - package_install
+    - patching
+    - timezone
+    - syslog_updates
+    - profile_mgmt

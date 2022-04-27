@@ -1,0 +1,29 @@
+---
+- name: This is playbook to install demonstrate use of multiple handlers 
+  hosts: ansible-c-4572-vm-2
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Installing the Apache Web Server and Maria DB
+    yum:
+      name: 
+      - httpd
+      - mariadb-server
+      state: latest
+    notify: 
+      - enable_httpd_handler
+      - enable_mariadb_handler
+  
+# Handlers
+  handlers:
+    - name: enable_httpd_handler
+      systemd:
+        enabled: True
+        name: httpd
+        state: restarted
+
+    - name: enable_mariadb_handler
+      systemd:
+        enabled: True
+        name: mariadb
+        state: restarted

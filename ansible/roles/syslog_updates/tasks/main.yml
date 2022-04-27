@@ -1,0 +1,22 @@
+---
+# tasks file for syslog_updates
+- name: Adding a block to a file
+  blockinfile:
+    path: /etc/rsyslog.conf
+    insertafter: EOF
+    state: present
+    block: |
+      $FileCreateMode 0640
+
+- name: Changing directory permissions
+  file:
+    path: /etc/rsyslog.d
+    owner: root
+    group: root
+    mode: 0640
+
+- name: Changing directory permissions
+  file:
+    path: /var/log
+    mode: 0775
+  notify: restart_rsyslog 

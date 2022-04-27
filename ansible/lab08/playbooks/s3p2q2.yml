@@ -1,0 +1,19 @@
+---
+- name: This is a playbook with 1 play and multiple tasks
+  hosts: linux
+  tasks:
+  # Task 1
+  - name: Installing the softwares
+    dnf:
+      name:
+      - httpd
+      - nmap
+      state: latest 
+
+  # Task 2
+  - name: Starting apache service and setting to auto-start on reboot
+    systemd:
+      name: httpd
+      state: started
+      enabled: yes  
+...

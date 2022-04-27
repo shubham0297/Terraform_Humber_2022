@@ -1,0 +1,14 @@
+---
+- name: This is playbook to install packages based on some condition
+  hosts: ansible-c-4572-vm-2
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Installing packages 
+    yum:
+      name: "{{ packages }}"
+      state: latest
+    loop: "{{ ansible_mounts }}"
+    when: 
+      - item.mount == "/"
+      - item.size_available > 2100000

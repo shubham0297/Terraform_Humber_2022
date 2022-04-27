@@ -1,0 +1,7 @@
+---
+# vars file for roles/package_install
+packages:
+  - cifs-utils
+  - nfs-utils
+  - audit
+  - chrony

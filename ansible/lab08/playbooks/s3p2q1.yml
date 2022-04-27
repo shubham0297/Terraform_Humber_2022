@@ -1,0 +1,17 @@
+---
+- name: This is a playbook with 1 play and multiple tasks
+  hosts: ansible-c-4572-vm-1
+  tasks:
+  # Task 1
+  - name: Create a user
+    user:
+      name: user4000
+      uid: 5000
+      state: present
+  # Task 2
+  - name: Create a group
+    group:
+      name: cloudadmins
+      gid: 3000
+      state: present
+...

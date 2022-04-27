@@ -1,0 +1,6 @@
+---
+# vars file for roles/package_remove
+packages:
+  - rsync
+  - ldap-utils
+  - nis

@@ -1,0 +1,17 @@
+---
+- name: This is playbook to check a particular user in nodes
+  hosts: linux
+  vars:
+    user: user1
+# Creating Task
+  tasks:
+  # Task 1
+  - name: Get the user information
+    command: cat /etc/passwd
+    register: all_users
+
+  # Task 2
+  - name: Check which node has user named {{ user }}
+    debug:
+      msg:  "{{ user }} is present in this node"
+    when: all_users.stdout.find(user) != -1 

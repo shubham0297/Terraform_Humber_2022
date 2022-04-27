@@ -1,0 +1,42 @@
+---
+# This is a playbook with 2 plays and 1 task per play
+
+# Play 1
+- name: Play 1 - Copy file from local to remote
+  hosts: ansible-c-4572-vm-1
+  tasks:
+  - name: Copy /etc/issue file from local to the given host
+    copy:
+      src: /etc/issue
+      dest: /etc/issue
+      owner: user4000
+      group: cloudadmins
+      mode: '0444'
+
+# Play 2
+- name: Play 2 - Changes the timezone
+  hosts: linux
+  tasks:
+  - name: Set timezone to America/Edmonton
+    timezone:
+      name: America/Edmonton
+
+
+# Play 3  -- This was added later
+- name: Play 3 - Creating group and user
+  hosts: ansible-c-4572-vm-2
+  tasks:
+  - name: Create a group
+    group:
+      name: devops
+      state: present
+      
+  - name: Creating user
+    user:
+      name: devops1
+      uid: 2500
+      groups: devops
+      append: yes
+      state: present
+...
+
